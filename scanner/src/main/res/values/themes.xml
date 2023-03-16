@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="BarcodeScannerTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <item name="android:statusBarColor">@color/bs_transparent</item>
+    <item name="android:navigationBarColor">@color/bs_transparent</item>
+  </style>
+</resources>

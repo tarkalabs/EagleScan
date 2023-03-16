@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  >
+
+  <androidx.camera.view.PreviewView
+    android:id="@+id/preview_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    />
+
+  <com.tarkalabs.scanner.views.BarcodeOverlayView
+    android:id="@+id/overlay_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    />
+
+  <androidx.appcompat.widget.AppCompatImageView
+    android:id="@+id/img_btn_flash"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:layout_gravity="top|end"
+    android:layout_margin="12dp"
+    app:srcCompat="@drawable/bs_ic_flash_on"
+    />
+</FrameLayout>

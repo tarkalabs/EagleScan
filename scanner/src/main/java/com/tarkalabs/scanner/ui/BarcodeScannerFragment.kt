@@ -124,7 +124,7 @@ class BarcodeScannerFragment : Fragment(R.layout.fragment_barcode_scanner) {
       .also { it.setAnalyzer(cameraExecutor, analyser) }
   }
 
-  private fun startCamera() {
+  fun startCamera() {
     val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
     cameraProviderFuture.addListener({
       try {

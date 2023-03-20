@@ -1,5 +1,6 @@
 package com.tarkalabs.barcodescanner
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -13,17 +14,21 @@ class MainActivity : AppCompatActivity() {
   private val scanResultReceiver = registerForActivityResult(ScanBarcodeContract()) {
     Toast.makeText(this, "result: $it", Toast.LENGTH_SHORT).show()
   }
-  
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-    findViewById<Button>(R.id.btn_scan).setOnClickListener {
+    findViewById<Button>(R.id.btn_scan_activity).setOnClickListener {
       scanResultReceiver.launch(
         BarcodeScannerConfig.Builder()
           .barcodeFormats(intArrayOf(Barcode.FORMAT_ALL_FORMATS))
-          .showFlashButton(false)
+          .showFlashButton(true)
           .build()
       )
+    }
+
+    findViewById<Button>(R.id.btn_scan_fragment).setOnClickListener {
+      startActivity(Intent(this, ScanFragmentHolderActivity::class.java))
     }
   }
 }

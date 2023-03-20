@@ -4,29 +4,28 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="com.tarkalabs.barcodescanner.MainActivity"
+  tools:context=".ScanFragmentHolderActivity"
   >
 
-  <Button
-    android:id="@+id/btn_scan_activity"
+  <TextView
+    android:id="@+id/tv_barcode"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Scan Activity"
+    android:layout_margin="12dp"
+    android:text="Barcode:"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/btn_scan_fragment"
     />
 
-  <Button
-    android:id="@+id/btn_scan_fragment"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Scan Activity"
+  <androidx.fragment.app.FragmentContainerView
+    android:id="@+id/fragment_container"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/btn_scan_activity"
+    app:layout_constraintTop_toBottomOf="@+id/tv_barcode"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

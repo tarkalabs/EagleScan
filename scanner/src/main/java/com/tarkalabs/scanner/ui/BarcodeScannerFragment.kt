@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Size
 import android.view.View
+import android.view.ViewGroup.MarginLayoutParams
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -13,8 +14,11 @@ import androidx.camera.core.Preview
 import androidx.camera.core.TorchState
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsCompat.Type
 import androidx.core.view.isVisible
+import androidx.core.view.updateMargins
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -46,8 +50,9 @@ class BarcodeScannerFragment : Fragment(R.layout.fragment_barcode_scanner) {
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
-    if (context is ScanResultListener)
+    if (context is ScanResultListener) {
       listener = context
+    }
   }
 
   override fun onDestroy() {
@@ -60,17 +65,30 @@ class BarcodeScannerFragment : Fragment(R.layout.fragment_barcode_scanner) {
     savedInstanceState: Bundle?
   ) {
     binding = FragmentBarcodeScannerBinding.bind(view)
+    applyInsets()
     applyScannerConfig()
     setupAnalyserObserver()
+    askAndHandlePermission()
+  }
+
+  private fun applyInsets() {
+    if (arguments?.getBoolean(EXTRA_ADJUST_INSETS, false) == true) {
+      val layoutParams = binding.imgBtnFlash.layoutParams as MarginLayoutParams
+      val topMargin = layoutParams.topMargin
+      val endMargin = layoutParams.marginEnd
+      ViewCompat.setOnApplyWindowInsetsListener(binding.imgBtnFlash) { v, insets ->
+        val systemBarInsets = insets.getInsets(Type.statusBars())
+        val lp = v.layoutParams as MarginLayoutParams
+        lp.updateMargins(
+          top = topMargin + systemBarInsets.top, right = endMargin + systemBarInsets.right
+        )
+        WindowInsetsCompat.CONSUMED
+      }
+    }
   }
 
   private val checkPermission = registerForActivityResult(RequestPermission()) {
     onPermissionGrantResult(it)
-  }
-
-  override fun onResume() {
-    super.onResume()
-    askAndHandlePermission()
   }
 
   private fun onPermissionGrantResult(granted: Boolean) {
@@ -162,14 +180,21 @@ class BarcodeScannerFragment : Fragment(R.layout.fragment_barcode_scanner) {
   companion object {
 
     @JvmStatic
-    fun newInstance(config: BarcodeScannerConfig): BarcodeScannerFragment {
-      val bundle = bundleOf(EXTRA_CONFIG to config)
+    fun newInstance(
+      config: BarcodeScannerConfig,
+      adjustInsets: Boolean = false
+    ): BarcodeScannerFragment {
+      val bundle = Bundle().apply {
+        putParcelable(EXTRA_CONFIG, config)
+        putBoolean(EXTRA_ADJUST_INSETS, adjustInsets)
+      }
       val fragment = BarcodeScannerFragment()
       fragment.arguments = bundle
       return fragment
     }
 
-    const val EXTRA_CONFIG = "com.tarkalabs.scanner.ui.KEY_CONFIG"
+    internal const val EXTRA_CONFIG = "com.tarkalabs.scanner.ui.KEY_CONFIG"
+    internal const val EXTRA_ADJUST_INSETS = "com.tarkalabs.scanner.ui.KEY_ADJUST_INSETS"
   }
 
   interface ScanResultListener {

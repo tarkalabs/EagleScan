@@ -4,7 +4,9 @@
   <uses-permission android:name="android.permission.CAMERA" />
   
   <application>
-    <activity android:name=".ui.BarcodeScannerActivity" />
+    <activity android:name=".ui.BarcodeScannerActivity"
+      android:screenOrientation="behind"
+      android:theme="@style/BarcodeScannerTheme"/>
 
     <meta-data
       android:name="com.google.mlkit.vision.DEPENDENCIES"

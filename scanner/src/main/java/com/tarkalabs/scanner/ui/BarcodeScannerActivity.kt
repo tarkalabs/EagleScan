@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import androidx.fragment.app.commit
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.tarkalabs.scanner.R
@@ -31,10 +33,20 @@ class BarcodeScannerActivity : AppCompatActivity(), ScanResultListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = ActivityBarcodeScannerBinding.inflate(layoutInflater)
+    val appThemeLayoutInflater = applicationInfo.theme.let { appThemeRes ->
+      if (appThemeRes != 0) layoutInflater.cloneInContext(
+        ContextThemeWrapper(this, appThemeRes)
+      ) else layoutInflater
+    }
+    binding = ActivityBarcodeScannerBinding.inflate(appThemeLayoutInflater)
     setContentView(binding.root)
+    setupFullScreenUI()
     val config = getScannerConfigOrDefault()
-    addFragment(config)
+    addFragment(config, true)
+  }
+
+  private fun setupFullScreenUI() {
+    WindowCompat.setDecorFitsSystemWindows(window, false)
   }
 
   private fun getScannerConfigOrDefault(): BarcodeScannerConfig {
@@ -53,10 +65,13 @@ class BarcodeScannerActivity : AppCompatActivity(), ScanResultListener {
       .build()
   }
 
-  private fun addFragment(config: BarcodeScannerConfig) {
+  private fun addFragment(
+    config: BarcodeScannerConfig,
+    adjustInsets: Boolean
+  ) {
     supportFragmentManager.commit {
       setReorderingAllowed(true)
-      add(R.id.container, BarcodeScannerFragment.newInstance(config))
+      add(R.id.container, BarcodeScannerFragment.newInstance(config, adjustInsets))
     }
   }
 

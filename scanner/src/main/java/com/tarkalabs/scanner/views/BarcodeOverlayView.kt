@@ -9,7 +9,7 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 
-class BarcodeOverlayView @JvmOverloads constructor(
+internal class BarcodeOverlayView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
@@ -18,8 +18,6 @@ class BarcodeOverlayView @JvmOverloads constructor(
   private val cornerRadius = 30.toPx
   private val qrScannerWidth = 190.toPx
   private val qrScannerHeight = 190.toPx
-
-  private val frameMarginRatio = 1f / 4
 
   /*Determines vertical position of the center point in the scanner cutout shape
     0f -> Center of scanner cutout shape will be at the top of the Canvas
@@ -118,7 +116,7 @@ class BarcodeOverlayView @JvmOverloads constructor(
   }
 }
 
-val Int.toDp: Int
+internal val Int.toDp: Int
   get() = (this / Resources.getSystem().displayMetrics.density).toInt()
-val Int.toPx: Int
+internal val Int.toPx: Int
   get() = (this * Resources.getSystem().displayMetrics.density).toInt()

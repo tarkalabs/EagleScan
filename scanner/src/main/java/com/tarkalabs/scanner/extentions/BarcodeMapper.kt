@@ -1,19 +1,13 @@
 package com.tarkalabs.scanner.extentions
 
-import android.util.Log
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.tarkalabs.scanner.data.BarcodeData
 
-private const val TAG = "BarcodeMapper"
-fun Barcode.toData(): BarcodeData? {
+internal fun Barcode.toData(): BarcodeData? {
   val rawValue = rawValue
   if (rawValue.isNullOrEmpty()) {
     return null
   }
-  Log.d(
-    TAG,
-    "Barcode: rawValue: ${this.rawValue}, displayValue: ${this.displayValue}, format: ${this.format}"
-  )
   return when (valueType) {
     Barcode.TYPE_UNKNOWN -> BarcodeData.Plain(rawValue)
     Barcode.TYPE_CONTACT_INFO -> contactInfo?.toDomain(rawValue)

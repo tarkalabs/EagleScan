@@ -38,7 +38,7 @@ class ScanFragmentHolderActivity : AppCompatActivity(), ScanResultListener {
       add(
         id.fragment_container, BarcodeScannerFragment.newInstance(
         BarcodeScannerConfig.Builder()
-          .barcodeFormats(intArrayOf(Barcode.FORMAT_ALL_FORMATS))
+          .barcodeFormats(Barcode.FORMAT_ALL_FORMATS)
           .showFlashButton(true)
           .build(), false
       )

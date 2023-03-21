@@ -60,7 +60,7 @@ class BarcodeScannerActivity : AppCompatActivity(), ScanResultListener {
 
   private fun getDefaultConfig(): BarcodeScannerConfig {
     return BarcodeScannerConfig.Builder()
-      .barcodeFormats(intArrayOf(Barcode.FORMAT_ALL_FORMATS))
+      .barcodeFormats(Barcode.FORMAT_ALL_FORMATS)
       .showFlashButton(true)
       .build()
   }

@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     findViewById<Button>(R.id.btn_scan_activity).setOnClickListener {
       scanResultReceiver.launch(
         BarcodeScannerConfig.Builder()
-          .barcodeFormats(intArrayOf(Barcode.FORMAT_ALL_FORMATS))
+          .barcodeFormats(Barcode.FORMAT_ALL_FORMATS)
           .showFlashButton(true)
           .build()
       )

@@ -1,6 +1,7 @@
 package com.tarkalabs.scanner.models
 
 import android.os.Parcelable
+import com.google.mlkit.vision.barcode.common.Barcode
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -13,7 +14,15 @@ class BarcodeScannerConfig internal constructor(
     private var barcodeFormats: IntArray = intArrayOf(),
     private var showFlashButton: Boolean = true,
   ) {
-    fun barcodeFormats(barcodeFormats: IntArray) = apply { this.barcodeFormats = barcodeFormats }
+    /**
+     * [Barcode.BarcodeFormat] formats that you wish to be scanned.
+     * @param barcodeFormats Barcode formats from [Barcode.BarcodeFormat].
+     */
+    fun barcodeFormats(vararg barcodeFormats: Int) = apply { this.barcodeFormats = barcodeFormats }
+
+    /**
+     * Show or Hide Flash icon on Camara View.
+     */
     fun showFlashButton(show: Boolean) = apply { this.showFlashButton = show }
 
     fun build() =

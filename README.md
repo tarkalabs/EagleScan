@@ -21,7 +21,7 @@ https://user-images.githubusercontent.com/5791518/227022045-d3e56c72-1332-4a8e-b
 
 Library provides two way of integrations.
 1. `BarcodeScannerActivity`: This is the simplest way to integrate, Just register for activity result and launch the scanner Activity
-2. `BarcodeScannerFragment`: Use this fragement when using `BarcodeScannerActivity` is not possible due to any UI design constraints.
+2. `BarcodeScannerFragment`: Use this fragment when using `BarcodeScannerActivity` is not possible due to any UI design constraints.
 
 Using `BarcodeScannerActivity`.
 ```
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), ScanResultListener {
   }
 ```
 
-`BarcodeResult` is a sealed class that represnets Barcode scanning result.
+`BarcodeResult` is a sealed class that represents Barcode scanning result.
 example:
 ```
 fun handleBarcodeResult(result: BarcodeResult) {  
@@ -82,7 +82,7 @@ fun handleBarcodeResult(result: BarcodeResult) {
 }
 ```
 
-`BarcodeResult.Success` exposes `BarcodeData` that conatins actual barcode data.
+`BarcodeResult.Success` exposes `BarcodeData` that contains actual barcode data.
 List of exposed Barcode types:
 
 - Plain

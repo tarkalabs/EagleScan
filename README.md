@@ -15,7 +15,7 @@ https://user-images.githubusercontent.com/5791518/227022045-d3e56c72-1332-4a8e-b
 
 **Installation**:
 
-    implementation('com.tarkalabs:barcode-scanner:1.0.0')
+    implementation('com.tarkalabs:barcode-scanner:1.1.0')
 
 **Code Sample**:
 

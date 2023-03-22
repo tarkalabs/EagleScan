@@ -5,6 +5,12 @@ For list of supported formats look [here](https://developers.google.com/android/
 
 **Note:** It bundles Firebase's Bundled ML Kit library that statically links ML model to the app at build time. Because of this, your app's size may grow by 2.4 MB. Supporting unbundled capability is not the priority right now. You may want to use Google's [code-scanner](https://developers.google.com/ml-kit/code-scanner) If you want to go unbundled.
 
+## Screenshot
+
+
+https://user-images.githubusercontent.com/5791518/227022045-d3e56c72-1332-4a8e-b42e-4092251165d6.mp4
+
+
 ## Instructions
 
 **Installation**:
@@ -47,7 +53,7 @@ class MainActivity : AppCompatActivity(), ScanResultListener {
   }
   
   override fun onScanResult(result: BarcodeResult) {
-	handleBarcodeResult(result)
+    handleBarcodeResult(result)
   }
 ```
 
@@ -73,8 +79,8 @@ fun handleBarcodeResult(result: BarcodeResult) {
       // No barcode found in capured Frame. you do not need to do anything.
     }
     UserCanceled -> {
-	  // Only BarcodeScannerActivity sends this result.
-	  // User cancelled barcode scanning by pressing back button in Barcode Scanner screen.
+      // Only BarcodeScannerActivity sends this result.
+      // User cancelled barcode scanning by pressing back button in Barcode Scanner screen.
     }
   }  
 }

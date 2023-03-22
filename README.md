@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(), ScanResultListener {
   }
   
   override fun onScanResult(result: BarcodeResult) {
-	handleBarcodeResult(result)
+    handleBarcodeResult(result)
   }
 ```
 
@@ -79,8 +79,8 @@ fun handleBarcodeResult(result: BarcodeResult) {
       // No barcode found in capured Frame. you do not need to do anything.
     }
     UserCanceled -> {
-	  // Only BarcodeScannerActivity sends this result.
-	  // User cancelled barcode scanning by pressing back button in Barcode Scanner screen.
+      // Only BarcodeScannerActivity sends this result.
+      // User cancelled barcode scanning by pressing back button in Barcode Scanner screen.
     }
   }  
 }

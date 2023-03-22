@@ -8,7 +8,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class BarcodeAnalyser(
@@ -16,7 +15,7 @@ class BarcodeAnalyser(
   private val coroutineScope: CoroutineScope
 ) : ImageAnalysis.Analyzer {
 
-  private val barcodeCodeScanner: BarcodeCodeScanner = MLKitCodeScanner(codeFormat)
+  private val barcodeCodeScanner = MLKitCodeScanner(codeFormat)
   private var resultsFlow: MutableSharedFlow<BarcodeResult> =
     MutableStateFlow(BarcodeResult.NoResult)
   val barcodeResults: SharedFlow<BarcodeResult> = resultsFlow

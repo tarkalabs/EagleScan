@@ -15,7 +15,7 @@ import com.tarkalabs.scanner.models.BarcodeResult.NoResult
 import com.tarkalabs.scanner.models.BarcodeResult.Success
 import kotlinx.coroutines.tasks.await
 
-class MLKitCodeScanner(private val barcodeFormats: IntArray) : BarcodeCodeScanner {
+class MLKitCodeScanner(private val barcodeFormats: IntArray) {
 
   private val barcodeScanner by lazy {
     val optionsBuilder = if (barcodeFormats.size > 1) {
@@ -29,7 +29,7 @@ class MLKitCodeScanner(private val barcodeFormats: IntArray) : BarcodeCodeScanne
   }
 
   @SuppressLint("UnsafeOptInUsageError")
-  override suspend fun readBarcodeOn(image: ImageProxy): BarcodeResult {
+  suspend fun readBarcodeOn(image: ImageProxy): BarcodeResult {
     try {
       val results: MutableList<Barcode> = barcodeScanner.process(image.toInputImage()).await()
       if (results.isEmpty()) return NoResult

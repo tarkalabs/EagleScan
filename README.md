@@ -74,10 +74,6 @@ fun handleBarcodeResult(result: BarcodeResult) {
       // Camera scanning permission not availble.
       // Library asks for Camera permission, but if user denys it, It sends this Result.
     }
-    NoResult -> {  
-      // Only BarcodeScannerFragment sends this result.
-      // No barcode found in capured Frame. you do not need to do anything.
-    }
     UserCanceled -> {
       // Only BarcodeScannerActivity sends this result.
       // User cancelled barcode scanning by pressing back button in Barcode Scanner screen.

@@ -14,7 +14,7 @@ internal fun Barcode.toData(): BarcodeData? {
     Barcode.TYPE_EMAIL -> email?.toDomain(rawValue)
     Barcode.TYPE_ISBN -> BarcodeData.Isbn(rawValue)
     Barcode.TYPE_PHONE -> phone.toDomain(rawValue)
-    Barcode.TYPE_SMS -> this.sms.toDomain(rawValue)
+    Barcode.TYPE_SMS -> sms.toDomain(rawValue)
     Barcode.TYPE_TEXT -> BarcodeData.Plain(rawValue)
     Barcode.TYPE_URL -> url.toDomain(rawValue)
     Barcode.TYPE_WIFI -> wifi.toDomain(rawValue)

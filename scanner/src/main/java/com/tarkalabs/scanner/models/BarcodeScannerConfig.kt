@@ -11,7 +11,7 @@ class BarcodeScannerConfig internal constructor(
 ) : Parcelable {
 
   data class Builder(
-    private var barcodeFormats: IntArray = intArrayOf(),
+    private var barcodeFormats: IntArray = intArrayOf(Barcode.FORMAT_ALL_FORMATS),
     private var showFlashButton: Boolean = true,
   ) {
     /**

@@ -181,16 +181,23 @@ class BarcodeScannerFragment : Fragment(R.layout.fragment_barcode_scanner) {
 
     @JvmStatic
     fun newInstance(
-      config: BarcodeScannerConfig,
+      config: BarcodeScannerConfig? = null,
       adjustInsets: Boolean = false
     ): BarcodeScannerFragment {
       val bundle = Bundle().apply {
-        putParcelable(EXTRA_CONFIG, config)
+        putParcelable(EXTRA_CONFIG, config ?: getDefaultConfig())
         putBoolean(EXTRA_ADJUST_INSETS, adjustInsets)
       }
       val fragment = BarcodeScannerFragment()
       fragment.arguments = bundle
       return fragment
+    }
+
+    private fun getDefaultConfig(): BarcodeScannerConfig {
+      return BarcodeScannerConfig.Builder()
+        .barcodeFormats(Barcode.FORMAT_ALL_FORMATS)
+        .showFlashButton(true)
+        .build()
     }
 
     internal const val EXTRA_CONFIG = "com.tarkalabs.scanner.ui.KEY_CONFIG"

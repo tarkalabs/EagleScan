@@ -49,24 +49,17 @@ class BarcodeScannerActivity : AppCompatActivity(), ScanResultListener {
     WindowCompat.setDecorFitsSystemWindows(window, false)
   }
 
-  private fun getScannerConfigOrDefault(): BarcodeScannerConfig {
+  private fun getScannerConfigOrDefault(): BarcodeScannerConfig? {
     val config = if (VERSION.SDK_INT >= VERSION_CODES.TIRAMISU) {
       intent.getParcelableExtra(EXTRA_CONFIG, BarcodeScannerConfig::class.java)
     } else {
       intent.getParcelableExtra(EXTRA_CONFIG)
     }
-    return config ?: getDefaultConfig()
-  }
-
-  private fun getDefaultConfig(): BarcodeScannerConfig {
-    return BarcodeScannerConfig.Builder()
-      .barcodeFormats(Barcode.FORMAT_ALL_FORMATS)
-      .showFlashButton(true)
-      .build()
+    return config
   }
 
   private fun addFragment(
-    config: BarcodeScannerConfig,
+    config: BarcodeScannerConfig?,
     adjustInsets: Boolean
   ) {
     supportFragmentManager.commit {

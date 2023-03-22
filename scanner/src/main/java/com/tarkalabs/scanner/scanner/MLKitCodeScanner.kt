@@ -9,13 +9,12 @@ import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
 import com.tarkalabs.scanner.data.BarcodeData
 import com.tarkalabs.scanner.extentions.toData
-import com.tarkalabs.scanner.models.BarcodeResult
-import com.tarkalabs.scanner.models.BarcodeResult.Error
-import com.tarkalabs.scanner.models.BarcodeResult.NoResult
-import com.tarkalabs.scanner.models.BarcodeResult.Success
-import kotlinx.coroutines.tasks.await
 
-class MLKitCodeScanner(private val barcodeFormats: IntArray) {
+class MLKitCodeScanner(
+  private val barcodeFormats: IntArray,
+  private val onSuccess: (BarcodeData) -> Unit,
+  private val onError: (Exception) -> Unit,
+) {
 
   private val barcodeScanner by lazy {
     val optionsBuilder = if (barcodeFormats.size > 1) {
@@ -29,19 +28,15 @@ class MLKitCodeScanner(private val barcodeFormats: IntArray) {
   }
 
   @SuppressLint("UnsafeOptInUsageError")
-  suspend fun readBarcodeOn(image: ImageProxy): BarcodeResult {
-    try {
-      val results: MutableList<Barcode> = barcodeScanner.process(image.toInputImage()).await()
-      if (results.isEmpty()) return NoResult
-      val result: Barcode = results.first()
-      val barcode: BarcodeData? = result.toData()
-      return if (barcode == null) {
-        NoResult
-      } else {
-        Success(barcode)
+  fun readBarcodeOn(image: ImageProxy) {
+    barcodeScanner.process(image.toInputImage()).addOnSuccessListener { results ->
+      if (results.isNotEmpty()) {
+        onSuccess(results.first().toData() ?: return@addOnSuccessListener)
       }
-    } catch (exception: Exception) {
-      return Error(exception)
+    }.addOnFailureListener { ex ->
+      onError(ex)
+    }.addOnCompleteListener {
+      image.close()
     }
   }
 

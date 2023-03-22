@@ -8,12 +8,10 @@ import android.view.ContextThemeWrapper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.commit
-import com.google.mlkit.vision.barcode.common.Barcode
 import com.tarkalabs.scanner.R
 import com.tarkalabs.scanner.databinding.ActivityBarcodeScannerBinding
 import com.tarkalabs.scanner.models.BarcodeResult
 import com.tarkalabs.scanner.models.BarcodeResult.MissingPermission
-import com.tarkalabs.scanner.models.BarcodeResult.NoResult
 import com.tarkalabs.scanner.models.BarcodeResult.Success
 import com.tarkalabs.scanner.models.BarcodeResult.UserCanceled
 import com.tarkalabs.scanner.models.BarcodeScannerConfig
@@ -82,7 +80,6 @@ class BarcodeScannerActivity : AppCompatActivity(), ScanResultListener {
         RESULT_ERROR,
         Intent().putExtra(EXTRA_RESULT_EXCEPTION, barcodeResult.exception)
       )
-      NoResult -> return
     }
     finish()
   }

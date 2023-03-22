@@ -1,6 +1,5 @@
 package com.tarkalabs.barcodescanner
 
-import android.Manifest.permission
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -18,7 +17,6 @@ import com.tarkalabs.barcodescanner.databinding.ActivityScanFragmentHolderBindin
 import com.tarkalabs.scanner.models.BarcodeResult
 import com.tarkalabs.scanner.models.BarcodeResult.Error
 import com.tarkalabs.scanner.models.BarcodeResult.MissingPermission
-import com.tarkalabs.scanner.models.BarcodeResult.NoResult
 import com.tarkalabs.scanner.models.BarcodeResult.Success
 import com.tarkalabs.scanner.models.BarcodeResult.UserCanceled
 import com.tarkalabs.scanner.models.BarcodeScannerConfig
@@ -131,7 +129,7 @@ class ScanFragmentHolderActivity : AppCompatActivity(), ScanResultListener {
       is Success -> {
         binding.tvBarcode.text = "Barcode: ${barcodeResult.data.rawValue}"
       }
-      NoResult, UserCanceled -> {
+      UserCanceled -> {
       }
     }
   }
@@ -145,6 +143,6 @@ class ScanFragmentHolderActivity : AppCompatActivity(), ScanResultListener {
   }
 
   private fun isCameraPermissionGranted() = ContextCompat.checkSelfPermission(
-    this@ScanFragmentHolderActivity, permission.CAMERA
+    this@ScanFragmentHolderActivity, android.Manifest.permission.CAMERA
   ) == PackageManager.PERMISSION_GRANTED
 }

@@ -20,11 +20,6 @@ sealed class BarcodeResult {
   object UserCanceled : BarcodeResult()
 
   /**
-   * Indicates No Barcode found in the image frame. You probably don't need to do anything on this result.
-   */
-  object NoResult : BarcodeResult()
-
-  /**
    * Indicates the successful barcode scan. [data] will give you barcode content.
    */
   data class Success internal constructor(val data: BarcodeData) : BarcodeResult()

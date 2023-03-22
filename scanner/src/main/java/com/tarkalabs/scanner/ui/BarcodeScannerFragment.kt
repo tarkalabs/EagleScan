@@ -20,17 +20,12 @@ import androidx.core.view.WindowInsetsCompat.Type
 import androidx.core.view.isVisible
 import androidx.core.view.updateMargins
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.tarkalabs.scanner.R
 import com.tarkalabs.scanner.databinding.FragmentBarcodeScannerBinding
 import com.tarkalabs.scanner.models.BarcodeResult
 import com.tarkalabs.scanner.models.BarcodeScannerConfig
 import com.tarkalabs.scanner.scanner.BarcodeAnalyser
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -38,7 +33,6 @@ class BarcodeScannerFragment : Fragment(R.layout.fragment_barcode_scanner) {
 
   private lateinit var binding: FragmentBarcodeScannerBinding
   private lateinit var cameraExecutor: ExecutorService
-  private lateinit var analyser: BarcodeAnalyser
   private var barcodeFormats = intArrayOf(Barcode.FORMAT_QR_CODE)
 
   private var listener: ScanResultListener? = null
@@ -67,7 +61,6 @@ class BarcodeScannerFragment : Fragment(R.layout.fragment_barcode_scanner) {
     binding = FragmentBarcodeScannerBinding.bind(view)
     applyInsets()
     applyScannerConfig()
-    setupAnalyserObserver()
     askAndHandlePermission()
   }
 
@@ -121,7 +114,13 @@ class BarcodeScannerFragment : Fragment(R.layout.fragment_barcode_scanner) {
     return ImageAnalysis.Builder()
       .setTargetResolution(Size(binding.previewView.width, binding.previewView.height))
       .build()
-      .also { it.setAnalyzer(cameraExecutor, analyser) }
+      .also {
+        it.setAnalyzer(cameraExecutor, BarcodeAnalyser(barcodeFormats, onSuccess = { data ->
+          listener?.onScanResult(BarcodeResult.Success(data))
+        }, onError = { exception ->
+          listener?.onScanResult(BarcodeResult.Error(exception))
+        }))
+      }
   }
 
   fun startCamera() {
@@ -155,19 +154,6 @@ class BarcodeScannerFragment : Fragment(R.layout.fragment_barcode_scanner) {
         listener?.onScanResult(BarcodeResult.Error(e))
       }
     }, ContextCompat.getMainExecutor(requireContext()))
-  }
-
-  private fun setupAnalyserObserver() {
-    analyser = BarcodeAnalyser(barcodeFormats, viewLifecycleOwner.lifecycleScope)
-    viewLifecycleOwner.lifecycleScope.launch {
-      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-        analyser.barcodeResults
-          .distinctUntilChanged()
-          .collect { result ->
-            listener?.onScanResult(result)
-          }
-      }
-    }
   }
 
   private fun applyScannerConfig() {

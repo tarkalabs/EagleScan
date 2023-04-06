@@ -1,6 +1,8 @@
-## BarcodeScanner
+<img width="120" alt="Logo" src="https://user-images.githubusercontent.com/5791518/230404098-bb393e7c-8753-4865-ae96-b8fa936f275b.png">
 
-BarcodeScanner is Barcode scanning library that was born from our internal needs. It uses [Firebase ML Kit](https://developers.google.com/ml-kit/vision/barcode-scanning) internally to read barcode/QR codes.
+## EagleScan
+
+EagleScan is Barcode scanning library that was born from our internal needs. It uses [Firebase ML Kit](https://developers.google.com/ml-kit/vision/barcode-scanning) internally to read barcode/QR codes.
 For list of supported formats look [here](https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/common/Barcode.BarcodeFormat).
 
 **Note:** It bundles Firebase's Bundled ML Kit library that statically links ML model to the app at build time. Because of this, your app's size may grow by 2.4 MB. Supporting unbundled capability is not the priority right now. You may want to use Google's [code-scanner](https://developers.google.com/ml-kit/code-scanner) If you want to go unbundled.

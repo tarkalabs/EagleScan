@@ -1,4 +1,4 @@
-package com.tarkalabs.barcodescanner
+package com.tarkalabs.eaglescan
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.mlkit.vision.barcode.common.Barcode
-import com.tarkalabs.scanner.models.BarcodeScannerConfig
-import com.tarkalabs.scanner.results.ScanBarcodeContract
+import com.tarkalabs.eaglescan.models.BarcodeScannerConfig
+import com.tarkalabs.eaglescan.results.ScanBarcodeContract
 
 class MainActivity : AppCompatActivity() {
 

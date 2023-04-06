@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-  namespace 'com.tarkalabs.scanner'
+  namespace 'com.tarkalabs.eaglescan'
   compileSdk 33
 
   defaultConfig {

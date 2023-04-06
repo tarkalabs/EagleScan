@@ -1,8 +1,8 @@
-package com.tarkalabs.scanner.models
+package com.tarkalabs.eaglescan.models
 
-import com.tarkalabs.scanner.data.BarcodeData
-import com.tarkalabs.scanner.ui.BarcodeScannerActivity
-import com.tarkalabs.scanner.ui.BarcodeScannerFragment
+import com.tarkalabs.eaglescan.data.BarcodeData
+import com.tarkalabs.eaglescan.ui.BarcodeScannerActivity
+import com.tarkalabs.eaglescan.ui.BarcodeScannerFragment
 
 /**
  * Result class encapsulating the All the possible Results from scanning

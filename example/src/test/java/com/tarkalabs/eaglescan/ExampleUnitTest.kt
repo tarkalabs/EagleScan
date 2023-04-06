@@ -1,4 +1,4 @@
-package com.tarkalabs.scanner
+package com.tarkalabs.eaglescan
 
 import org.junit.Test
 

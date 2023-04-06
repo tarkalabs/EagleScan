@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-  namespace 'com.tarkalabs.barcodescanner'
+  namespace 'com.tarkalabs.eaglescan'
   compileSdk 33
 
   defaultConfig {
-    applicationId "com.tarkalabs.barcodescanner"
+    applicationId "com.tarkalabs.eaglescan"
     minSdk 25
     targetSdk 33
     versionCode 1

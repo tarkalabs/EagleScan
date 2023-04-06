@@ -1,4 +1,4 @@
-package com.tarkalabs.scanner.ui
+package com.tarkalabs.eaglescan.ui
 
 import android.Manifest.permission
 import android.content.Context
@@ -21,11 +21,13 @@ import androidx.core.view.isVisible
 import androidx.core.view.updateMargins
 import androidx.fragment.app.Fragment
 import com.google.mlkit.vision.barcode.common.Barcode
-import com.tarkalabs.scanner.R
-import com.tarkalabs.scanner.databinding.FragmentBarcodeScannerBinding
-import com.tarkalabs.scanner.models.BarcodeResult
-import com.tarkalabs.scanner.models.BarcodeScannerConfig
-import com.tarkalabs.scanner.scanner.BarcodeAnalyser
+import com.tarkalabs.eaglescan.R
+import com.tarkalabs.eaglescan.databinding.FragmentBarcodeScannerBinding
+import com.tarkalabs.eaglescan.models.BarcodeResult
+import com.tarkalabs.eaglescan.models.BarcodeResult.Error
+import com.tarkalabs.eaglescan.models.BarcodeResult.Success
+import com.tarkalabs.eaglescan.models.BarcodeScannerConfig
+import com.tarkalabs.eaglescan.scanner.BarcodeAnalyser
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -116,9 +118,9 @@ class BarcodeScannerFragment : Fragment(R.layout.fragment_barcode_scanner) {
       .build()
       .also {
         it.setAnalyzer(cameraExecutor, BarcodeAnalyser(barcodeFormats, onSuccess = { data ->
-          listener?.onScanResult(BarcodeResult.Success(data))
+          listener?.onScanResult(Success(data))
         }, onError = { exception ->
-          listener?.onScanResult(BarcodeResult.Error(exception))
+          listener?.onScanResult(Error(exception))
         }))
       }
   }

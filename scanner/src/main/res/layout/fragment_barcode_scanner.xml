@@ -11,7 +11,7 @@
     android:layout_height="match_parent"
     />
 
-  <com.tarkalabs.scanner.views.BarcodeOverlayView
+  <com.tarkalabs.eaglescan.views.BarcodeOverlayView
     android:id="@+id/overlay_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

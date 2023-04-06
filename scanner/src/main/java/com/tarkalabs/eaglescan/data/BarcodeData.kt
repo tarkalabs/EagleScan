@@ -1,4 +1,4 @@
-package com.tarkalabs.scanner.data
+package com.tarkalabs.eaglescan.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -1,4 +1,4 @@
-package com.tarkalabs.barcodescanner
+package com.tarkalabs.eaglescan
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,16 +12,16 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
 import com.google.android.material.snackbar.Snackbar
 import com.google.mlkit.vision.barcode.common.Barcode
-import com.tarkalabs.barcodescanner.R.id
-import com.tarkalabs.barcodescanner.databinding.ActivityScanFragmentHolderBinding
-import com.tarkalabs.scanner.models.BarcodeResult
-import com.tarkalabs.scanner.models.BarcodeResult.Error
-import com.tarkalabs.scanner.models.BarcodeResult.MissingPermission
-import com.tarkalabs.scanner.models.BarcodeResult.Success
-import com.tarkalabs.scanner.models.BarcodeResult.UserCanceled
-import com.tarkalabs.scanner.models.BarcodeScannerConfig
-import com.tarkalabs.scanner.ui.BarcodeScannerFragment
-import com.tarkalabs.scanner.ui.BarcodeScannerFragment.ScanResultListener
+import com.tarkalabs.eaglescan.R.id
+import com.tarkalabs.eaglescan.databinding.ActivityScanFragmentHolderBinding
+import com.tarkalabs.eaglescan.models.BarcodeResult
+import com.tarkalabs.eaglescan.models.BarcodeResult.Error
+import com.tarkalabs.eaglescan.models.BarcodeResult.MissingPermission
+import com.tarkalabs.eaglescan.models.BarcodeResult.Success
+import com.tarkalabs.eaglescan.models.BarcodeResult.UserCanceled
+import com.tarkalabs.eaglescan.models.BarcodeScannerConfig
+import com.tarkalabs.eaglescan.ui.BarcodeScannerFragment
+import com.tarkalabs.eaglescan.ui.BarcodeScannerFragment.ScanResultListener
 
 class ScanFragmentHolderActivity : AppCompatActivity(), ScanResultListener {
   private lateinit var binding: ActivityScanFragmentHolderBinding

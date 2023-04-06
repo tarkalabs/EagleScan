@@ -1,4 +1,4 @@
-package com.tarkalabs.scanner.models
+package com.tarkalabs.eaglescan.models
 
 import android.os.Parcelable
 import com.google.mlkit.vision.barcode.common.Barcode

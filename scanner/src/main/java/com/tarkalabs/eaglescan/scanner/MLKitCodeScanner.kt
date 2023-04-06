@@ -1,4 +1,4 @@
-package com.tarkalabs.scanner.scanner
+package com.tarkalabs.eaglescan.scanner
 
 import android.annotation.SuppressLint
 import androidx.camera.core.ExperimentalGetImage
@@ -7,8 +7,8 @@ import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
-import com.tarkalabs.scanner.data.BarcodeData
-import com.tarkalabs.scanner.extentions.toData
+import com.tarkalabs.eaglescan.data.BarcodeData
+import com.tarkalabs.eaglescan.extentions.toData
 
 class MLKitCodeScanner(
   private val barcodeFormats: IntArray,

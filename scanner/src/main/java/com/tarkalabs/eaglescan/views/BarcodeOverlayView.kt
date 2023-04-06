@@ -1,4 +1,4 @@
-package com.tarkalabs.scanner.views
+package com.tarkalabs.eaglescan.views
 
 import android.content.Context
 import android.content.res.Resources

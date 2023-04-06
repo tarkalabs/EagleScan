@@ -1,4 +1,4 @@
-package com.tarkalabs.scanner.ui
+package com.tarkalabs.eaglescan.ui
 
 import android.content.Intent
 import android.os.Build.VERSION
@@ -8,15 +8,15 @@ import android.view.ContextThemeWrapper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.commit
-import com.tarkalabs.scanner.R
-import com.tarkalabs.scanner.databinding.ActivityBarcodeScannerBinding
-import com.tarkalabs.scanner.models.BarcodeResult
-import com.tarkalabs.scanner.models.BarcodeResult.MissingPermission
-import com.tarkalabs.scanner.models.BarcodeResult.Success
-import com.tarkalabs.scanner.models.BarcodeResult.UserCanceled
-import com.tarkalabs.scanner.models.BarcodeScannerConfig
-import com.tarkalabs.scanner.ui.BarcodeScannerFragment.Companion.EXTRA_CONFIG
-import com.tarkalabs.scanner.ui.BarcodeScannerFragment.ScanResultListener
+import com.tarkalabs.eaglescan.R
+import com.tarkalabs.eaglescan.databinding.ActivityBarcodeScannerBinding
+import com.tarkalabs.eaglescan.models.BarcodeResult
+import com.tarkalabs.eaglescan.models.BarcodeResult.MissingPermission
+import com.tarkalabs.eaglescan.models.BarcodeResult.Success
+import com.tarkalabs.eaglescan.models.BarcodeResult.UserCanceled
+import com.tarkalabs.eaglescan.models.BarcodeScannerConfig
+import com.tarkalabs.eaglescan.ui.BarcodeScannerFragment.Companion.EXTRA_CONFIG
+import com.tarkalabs.eaglescan.ui.BarcodeScannerFragment.ScanResultListener
 
 class BarcodeScannerActivity : AppCompatActivity(), ScanResultListener {
 

@@ -1,7 +1,7 @@
-package com.tarkalabs.scanner.extentions
+package com.tarkalabs.eaglescan.extentions
 
 import com.google.mlkit.vision.barcode.common.Barcode
-import com.tarkalabs.scanner.data.BarcodeData
+import com.tarkalabs.eaglescan.data.BarcodeData
 
 internal fun Barcode.toData(): BarcodeData? {
   val rawValue = rawValue

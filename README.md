@@ -10,7 +10,8 @@ For list of supported formats look [here](https://developers.google.com/android/
 ## Screenshot
 
 
-https://user-images.githubusercontent.com/5791518/227022045-d3e56c72-1332-4a8e-b42e-4092251165d6.mp4
+https://user-images.githubusercontent.com/5791518/230528003-d3c6b561-8214-41e1-b858-6ed77ee57724.mp4
+
 
 
 ## Instructions

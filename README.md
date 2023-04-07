@@ -18,7 +18,7 @@ https://user-images.githubusercontent.com/5791518/230528003-d3c6b561-8214-41e1-b
 
 **Installation**:
 
-    implementation('com.tarkalabs:barcode-scanner:1.1.0')
+    implementation('com.tarkalabs:eagle-scan:1.0.0')
 
 **Code Sample**:
 

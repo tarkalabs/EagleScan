@@ -26,7 +26,7 @@ Library provides two way of integrations.
 1. `BarcodeScannerActivity`: This is the simplest way to integrate, Just register for activity result and launch the scanner Activity
 2. `BarcodeScannerFragment`: Use this fragment when using `BarcodeScannerActivity` is not possible due to any UI design constraints.
 
-Using `BarcodeScannerActivity`.
+Using `BarcodeScannerActivity`:
 ```
 val scanResultReceiver = registerForActivityResult(ScanBarcodeContract()) { result->
   handleBarcodeResult(result)
@@ -41,7 +41,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 ```
 
-Using `BarcodeScannerFragment`
+Using `BarcodeScannerFragment`:
 
 ```
 class MainActivity : AppCompatActivity(), ScanResultListener {
